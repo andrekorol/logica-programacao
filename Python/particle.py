@@ -95,7 +95,7 @@ def main():
             force_y = float(input("Entre a componente y da forca: "))
             force = Force(magnitude, force_x, force_y)
             new_accel = particle.acceleration.plus(
-                force.direction.x + force.magnitude, force.direction.y + force.magnitude
+                force.direction.times(force.magnitude)
             )
         new_speed_x = particle.speed.x + new_accel.x
         new_speed_y = particle.speed.y + new_accel.y
@@ -121,6 +121,10 @@ def main():
         state = State(particle, obstacles)
 
         print(f"Posicao da particula: x = {particle.pos.x}, y = {particle.pos.y}")
+
+        answer = input("Deseja continuar a simulacao? [Y/n]")
+        if answer.lower() == "n":
+            break
 
     print(f"Posicao da particula: x = {particle.pos.x}, y = {particle.pos.y}")
     print(f"Velocidade da particula: Vx = {particle.speed.x}, Vy = {particle.speed.y}")
